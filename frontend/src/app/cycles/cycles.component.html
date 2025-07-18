@@ -1,0 +1,213 @@
+<div class="min-h-screen flex bg-[#fff]">
+  <!-- Sidebar -->
+  <div class="sidebar w-1/4 bg-[#001F3F] text-white">
+    <h2 class="p-6 text-xl font-bold">Admin Panel</h2>
+    <ul class="space-y-4 p-6">
+      <li><a
+        routerLink="/participants"
+        class="block py-3 px-6 text-sm font-medium hover:bg-blue-800 hover:text-white transition duration-200"
+      >
+        Participants
+      </a></li>
+      <li> <a
+        routerLink="/formateurs"
+        class="block py-3 px-6 text-sm font-medium hover:bg-blue-800 hover:text-white transition duration-200"
+      >
+        Formateurs
+      </a></li>
+      <li>  <a
+        routerLink="/cycles"
+        class="block py-3 px-6 text-sm font-medium hover:bg-blue-800 hover:text-white transition duration-200"
+      >
+        Cycles
+      </a></li>
+    </ul>
+  </div>
+
+
+
+  <!-- Main Content -->
+  <div class="flex-1 p-6">
+    <!-- Header -->
+    <h1 class="text-3xl font-bold text-[#001F3F] mb-6">Gestion des Cycles</h1>
+
+    <!-- Form Section -->
+<div class="card mb-6 p-6 bg-white rounded-lg shadow-md">
+  <button class="bg-[#001F3F] text-white px-6 py-2 rounded hover:bg-[#00509E]" (click)="toggleForm()">
+    {{ selectedCycle.id === 0 ? 'Ajouter un Cycle' : 'Modifier Cycle' }}
+  </button>
+  <div *ngIf="showForm" class="mt-6 bg-gray-50 p-6 rounded-lg shadow-inner">
+    <form class="grid grid-cols-2 gap-6" (ngSubmit)="addOrEditCycle()">
+      <div>
+        <label class="block text-sm font-medium text-[#001F3F] mb-1">Entreprise</label>
+        <input type="text" [(ngModel)]="selectedCycle.entreprise" name="entreprise" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-[#001F3F]" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-[#001F3F] mb-1">Num Action</label>
+        <input type="text" [(ngModel)]="selectedCycle.numAction" name="numAction" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-[#001F3F]" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-[#001F3F] mb-1">Thème</label>
+        <input type="text" [(ngModel)]="selectedCycle.theme" name="theme" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-[#001F3F]" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-[#001F3F] mb-1">Crédit Impôt</label>
+        <input type="checkbox" [(ngModel)]="selectedCycle.creditImpot" name="creditImpot" class="w-5 h-5" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-[#001F3F] mb-1">Droit Tirage</label>
+        <input type="checkbox" [(ngModel)]="selectedCycle.droitTirage" name="droitTirage" class="w-5 h-5" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-[#001F3F] mb-1">Mode Formation</label>
+        <input type="text" [(ngModel)]="selectedCycle.modeFormation" name="modeFormation" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-[#001F3F]" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-[#001F3F] mb-1">Lieu Déroulement</label>
+        <input type="text" [(ngModel)]="selectedCycle.lieuDeroulement" name="lieuDeroulement" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-[#001F3F]" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-[#001F3F] mb-1">Gouvernorat</label>
+        <input type="text" [(ngModel)]="selectedCycle.gouvernorat" name="gouvernorat" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-[#001F3F]" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-[#001F3F] mb-1">Date Début</label>
+        <input type="date" [(ngModel)]="selectedCycle.dateDebut" name="dateDebut" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-[#001F3F]" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-[#001F3F] mb-1">Date Fin</label>
+        <input type="date" [(ngModel)]="selectedCycle.dateFin" name="dateFin" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-[#001F3F]" />
+      </div>
+      <!-- Horaire Début -->
+      <div>
+        <label class="block text-sm font-medium text-[#001F3F] mb-2">Horaire Début</label>
+        <input
+          type="time"
+          [(ngModel)]="selectedCycle.horaireDebut"
+          name="HoraireDebut"
+          class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-[#001F3F] focus:outline-none" />
+      </div>
+      <!-- Horaire Fin -->
+      <div>
+        <label class="block text-sm font-medium text-[#001F3F] mb-2">Horaire Fin</label>
+        <input
+          type="time"
+          [(ngModel)]="selectedCycle.horaireFin"
+          name="HoraireFin"
+          class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-[#001F3F] focus:outline-none" />
+      </div>
+      <!-- Pause Début -->
+      <div>
+        <label class="block text-sm font-medium text-[#001F3F] mb-2">Pause Début</label>
+        <input
+          type="time"
+          [(ngModel)]="selectedCycle.pauseDebut"
+          name="PauseDebut"
+          class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-[#001F3F] focus:outline-none" />
+      </div>
+      <!-- Pause Fin -->
+      <div>
+        <label class="block text-sm font-medium text-[#001F3F] mb-2">Pause Fin</label>
+        <input
+          type="time"
+          [(ngModel)]="selectedCycle.pauseFin"
+          name="PauseFin"
+          class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-[#001F3F] focus:outline-none" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-[#001F3F] mb-1">Num Salle</label>
+        <input type="text" [(ngModel)]="selectedCycle.numSalle" name="numSalle" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-[#001F3F]" />
+      </div>
+      <div class="col-span-2 flex justify-end space-x-4 mt-6">
+        <button class="flex-1 bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition duration-300" type="button" (click)="toggleForm()">
+          Annuler
+        </button>
+        <button class="flex-1 bg-[#001F3F] text-white px-6 py-2 rounded-lg hover:bg-[#00509E] transition duration-300" type="submit">
+          {{ selectedCycle.id ? 'Modifier' : 'Ajouter' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+    <!-- Tableau des cycles -->
+    <div class="overflow-x-auto">
+      <table class="min-w-full bg-white border border-gray-300 rounded">
+        <thead class="bg-[#001F3F] text-white">
+        <tr>
+          <th class="px-4 py-2">Entreprise</th>
+          <th class="px-4 py-2">Numéro Action</th>
+          <th class="px-4 py-2">Thème</th>
+          <th class="px-4 py-2">Crédit Impôt</th>
+          <th class="px-4 py-2">Droit Tirage</th>
+          <th class="px-4 py-2">Mode Formation</th>
+          <th class="px-4 py-2">Lieu Déroulement</th>
+          <th class="px-4 py-2">Gouvernorat</th>
+          <th class="px-4 py-2">Date Début</th>
+          <th class="px-4 py-2">Date Fin</th>
+          <th class="px-4 py-2">Horaire Début</th>
+          <th class="px-4 py-2">Horaire Fin</th>
+          <th class="px-4 py-2">Pause Début</th>
+          <th class="px-4 py-2">Pause Fin</th>
+          <th class="px-4 py-2">Num Salle</th>
+          <th class="px-4 py-2">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let cycle of cycles" class="hover:bg-gray-100">
+          <td class="px-4 py-2 border">{{ cycle.entreprise }}</td>
+          <td class="px-4 py-2 border">{{ cycle.numAction }}</td>
+          <td class="px-4 py-2 border">{{ cycle.theme }}</td>
+          <td class="px-4 py-2 border">{{ cycle.creditImpot }}</td>
+          <td class="px-4 py-2 border">{{ cycle.droitTirage }}</td>
+          <td class="px-4 py-2 border">{{ cycle.modeFormation }}</td>
+          <td class="px-4 py-2 border">{{ cycle.lieuDeroulement }}</td>
+          <td class="px-4 py-2 border">{{ cycle.gouvernorat }}</td>
+          <td class="px-4 py-2 border">{{ cycle.dateDebut }}</td>
+          <td class="px-4 py-2 border">{{ cycle.dateFin }}</td>
+          <td class="px-4 py-2 border">{{ cycle.horaireDebut }}</td>
+          <td class="px-4 py-2 border">{{ cycle.horaireFin }}</td>
+          <td class="px-4 py-2 border">{{ cycle.pauseDebut }}</td>
+          <td class="px-4 py-2 border">{{ cycle.pauseFin }}</td>
+          <td class="px-4 py-2 border">{{ cycle.numSalle }}</td>
+          <td class="px-4 py-2 border flex space-x-2">
+            <button class="text-blue-500  hover:text-blue-700" (click)="viewCycle(cycle)">
+              <i class="fas fa-eye"></i>
+            </button>
+            <button class="text-yellow-500 hover:text-yellow-700" (click)="editCycle(cycle)">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button class="text-red-500 hover:text-red-700" (click)="deleteCycle(cycle.id)">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Details Section -->
+    <div *ngIf="showDetails" class="card mt-6">
+      <h2 class="text-lg font-bold text-[#001F3F] mb-4">Détails du Cycle</h2>
+      <div class="grid grid-cols-2 gap-4">
+        <p><strong>Entreprise :</strong> {{ selectedCycle.entreprise }}</p>
+        <p><strong>Numéro d'action :</strong> {{ selectedCycle.numAction }}</p>
+        <p><strong>Thème :</strong> {{ selectedCycle.theme }}</p>
+        <p><strong>Crédit d'impôt :</strong> {{ selectedCycle.creditImpot }}</p>
+        <p><strong>Droit de tirage :</strong> {{ selectedCycle.droitTirage }}</p>
+        <p><strong>Mode de formation :</strong> {{ selectedCycle.modeFormation }}</p>
+        <p><strong>Lieu de déroulement :</strong> {{ selectedCycle.lieuDeroulement }}</p>
+        <p><strong>Gouvernorat :</strong> {{ selectedCycle.gouvernorat }}</p>
+        <p><strong>Date de début :</strong> {{ selectedCycle.dateDebut }}</p>
+        <p><strong>Date de fin :</strong> {{ selectedCycle.dateFin }}</p>
+        <p><strong>Horaire de début :</strong> {{ selectedCycle.horaireDebut }}</p>
+        <p><strong>Horaire de fin :</strong> {{ selectedCycle.horaireFin }}</p>
+        <p><strong>Pause début :</strong> {{ selectedCycle.pauseDebut }}</p>
+        <p><strong>Pause fin :</strong> {{ selectedCycle.pauseFin }}</p>
+        <p><strong>Numéro de salle :</strong> {{ selectedCycle.numSalle }}</p>
+      </div>
+      <button class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 mt-4" (click)="closeDetails()">Fermer</button>
+    </div>
+  </div>
+</div>

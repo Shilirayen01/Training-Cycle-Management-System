@@ -1,0 +1,47 @@
+<header class="w-full bg-white shadow-md">
+  <div class="container mx-auto flex items-center justify-between py-4 px-6">
+    <!-- Logo -->
+    <div class="text-xl font-bold text-black">
+      CNI
+    </div>
+
+    <!-- Navigation (bureau) -->
+    <nav class="hidden lg:flex space-x-8 text-black text-sm font-medium">
+      <a routerLink="/" routerLinkActive="text-gray-700" class="hover:text-gray-700">Accueil</a>
+      <a routerLink="/about" routerLinkActive="text-gray-700" class="hover:text-gray-700">À propos</a>
+      <a routerLink="/formation" routerLinkActive="text-gray-700" class="hover:text-gray-700">Formation</a>
+      <a routerLink="/contact" routerLinkActive="text-gray-700" class="hover:text-gray-700">Contact</a>
+    </nav>
+
+    <!-- Contact & Icons -->
+    <div class="flex items-center space-x-6 text-sm">
+      <span class="text-black">01 23 45 67 89</span>
+      <!-- Social Icons -->
+      <div class="flex space-x-4 text-black">
+        <a href="https://www.facebook.com/CNITUNISI/?locale=fr_FR" class="hover:text-gray-700"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://x.com/cnitunisia?lang=ar-x-fm" class="hover:text-gray-700"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.linkedin.com/company/centre-national-de-l'informatique?originalSubdomain=tn" class="hover:text-gray-700"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+      <!-- Connexion -->
+      <a routerLink="/login" class="flex items-center space-x-2 text-black hover:text-gray-700">
+        <i class="fas fa-user"></i>
+        <span>Connexion</span>
+      </a>
+    </div>
+
+    <!-- Menu Burger (mobile) -->
+    <button (click)="toggleMenu()" class="lg:hidden text-black">
+      <i [ngClass]="menuOpen ? 'fas fa-times' : 'fas fa-bars'"></i>
+    </button>
+  </div>
+
+  <!-- Menu Mobile -->
+  <div *ngIf="menuOpen" class="lg:hidden bg-gray-100 py-4 px-6">
+    <nav class="space-y-4 text-black text-sm font-medium">
+      <a routerLink="/" routerLinkActive="text-gray-700" class="block hover:text-gray-700">Accueil</a>
+      <a routerLink="/aboutus" routerLinkActive="text-gray-700" class="block hover:text-gray-700">À propos</a>
+      <a routerLink="/formation" routerLinkActive="text-gray-700" class="block hover:text-gray-700">Formation</a>
+      <a routerLink="/contact" routerLinkActive="text-gray-700" class="block hover:text-gray-700">Contact</a>
+    </nav>
+  </div>
+</header>

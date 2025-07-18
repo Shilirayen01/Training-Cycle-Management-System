@@ -1,0 +1,98 @@
+<div class="min-h-screen flex bg-[#fff]">
+  <!-- Sidebar -->
+  <div class="sidebar w-1/4 bg-[#001F3F] text-white">
+    <h2 class="p-6 text-xl font-bold">Admin Panel</h2>
+    <ul class="space-y-4 p-6">
+      <li><a routerLink="/participants" class="block py-3 px-6 text-sm font-medium hover:bg-blue-800 hover:text-white transition duration-200">
+        Participants
+      </a></li>
+      <li> <a
+        routerLink="/formateurs"
+        class="block py-3 px-6 text-sm font-medium hover:bg-blue-800 hover:text-white transition duration-200"
+      >
+        Formateurs
+      </a></li>
+      <li>  <a
+        routerLink="/cycles"
+        class="block py-3 px-6 text-sm font-medium hover:bg-blue-800 hover:text-white transition duration-200"
+      >
+        Cycles
+      </a></li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="flex-1 p-6">
+    <h1 class="text-3xl font-bold text-[#001F3F] mb-6">Liste des Participants</h1>
+
+    <!-- Filtre Section -->
+    <div class="mb-6">
+      <h2 class="text-lg font-bold text-[#001F3F]">Filtres</h2>
+      <form class="grid grid-cols-3 gap-4" (ngSubmit)="applyFilters()">
+        <div>
+          <label class="block text-sm font-medium text-[#001F3F] mb-1">Numéro Salle</label>
+          <input type="text" [(ngModel)]="filters.numSalle" name="numSalle" class="w-full border rounded p-2" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-[#001F3F] mb-1">Date Début</label>
+          <input type="date" [(ngModel)]="filters.dateDebut" name="dateDebut" class="w-full border rounded p-2" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-[#001F3F] mb-1">Thème</label>
+          <input type="text" [(ngModel)]="filters.theme" name="theme" class="w-full border rounded p-2" />
+        </div>
+        <button class="col-span-3 bg-[#001F3F] text-white px-4 py-2 rounded hover:bg-[#00509E]" type="submit">
+          Appliquer
+        </button>
+      </form>
+    </div>
+
+    <!-- Table Section -->
+    <div class="card">
+      <table class="min-w-full table-auto border-collapse bg-white rounded shadow">
+        <thead class="bg-[#001F3F] text-white">
+        <tr>
+          <th class="px-4 py-2">Nom Prénom (FR)</th>
+          <th class="px-4 py-2">Nom Prénom (AR)</th>
+          <th class="px-4 py-2">Num CIN</th>
+          <th class="px-4 py-2">Numéro Salle</th>
+          <th class="px-4 py-2">Date Début</th>
+          <th class="px-4 py-2">Thème</th>
+          <th class="px-4 py-2">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let participant of filteredParticipants" class="hover:bg-gray-100">
+          <td class="px-4 py-2 border">{{ participant.nomPrenom }}</td>
+          <td class="px-4 py-2 border">{{ participant.nomPrenomArabe }}</td>
+          <td class="px-4 py-2 border">{{ participant.numCin }}</td>
+          <td class="px-4 py-2 border">{{ participant.cycle?.numSalle }}</td>
+          <td class="px-4 py-2 border">{{ participant.cycle?.dateDebut }}</td>
+          <td class="px-4 py-2 border">{{ participant.cycle?.theme }}</td>
+          <td class="px-4 py-2 border text-center space-x-2">
+            <button class="text-blue-500 hover:text-blue-700" (click)="viewParticipant(participant)">
+              <i class="fas fa-eye"></i>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- Details Section -->
+    <div *ngIf="showDetails && selectedParticipant" class="card mt-6">
+      <h2 class="text-lg font-bold text-[#001F3F] mb-4">Détails du Participant</h2>
+      <div class="grid grid-cols-2 gap-4">
+        <p><strong>Nom Prénom (FR):</strong> {{ selectedParticipant.nomPrenom }}</p>
+        <p><strong>Nom Prénom (AR):</strong> {{ selectedParticipant.nomPrenomArabe }}</p>
+        <p><strong>Num CIN:</strong> {{ selectedParticipant.numCin }}</p>
+        <p><strong>Direction Service:</strong> {{ selectedParticipant.directionService }}</p>
+        <p><strong>Entreprise:</strong> {{ selectedParticipant.entreprise }}</p>
+        <p><strong>Engagement:</strong> {{ selectedParticipant.engagement }}</p>
+        <p><strong>Numéro Salle:</strong> {{ selectedParticipant.cycle?.numSalle }}</p>
+        <p><strong>Date Début:</strong> {{ selectedParticipant.cycle?.dateDebut }}</p>
+        <p><strong>Thème:</strong> {{ selectedParticipant.cycle?.theme }}</p>
+      </div>
+      <button class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 mt-4" (click)="closeDetails()">Fermer</button>
+    </div>
+  </div>
+</div>

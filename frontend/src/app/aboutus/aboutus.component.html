@@ -1,0 +1,112 @@
+<app-nav-bar></app-nav-bar>
+<div class="bg-[#002855] text-white text-center py-10 px-4 mb-1">
+  <!-- Titre principal agrandi -->
+  <h1 class="text-5xl font-extrabold mb-6 uppercase tracking-wide">Notre mission</h1>
+
+  <div class="flex justify-center items-center h-[600px] px-4">
+      <!-- Cadre rectangulaire avec coins arrondis, largeur augmentée et hauteur réduite -->
+      <div class="bg-white text-[#002855] p-8 rounded-lg shadow-lg flex items-center space-x-8 w-[80%] h-[400px] border border-[#004080]">
+
+          <!-- Texte principal aligné et élargi -->
+          <p class="text-base leading-relaxed text-justify">
+              <strong>Le Centre National de l’Informatique (CNI)</strong> en Tunisie est un établissement public clé dans le domaine des technologies de l'information et de la communication (TIC). Il joue un rôle fondamental dans la modernisation et la transformation numérique de l'administration tunisienne.
+              <br><br>
+              <strong>Fondé en 1975</strong>, le CNI a pour mission principale de gérer et d'accompagner les projets informatiques stratégiques au sein des institutions publiques tunisiennes.
+              <br><br>
+              Le CNI se distingue par son expertise technique et son engagement à promouvoir l'innovation technologique. Il accompagne les projets de gouvernement électronique (E-Gov) et participe activement à la digitalisation des services publics.
+          </p>
+
+          <!-- Encadré avec points clés réduit -->
+          <div class="bg-[#e0e7ff] p-6 rounded-lg shadow-md max-w-md border border-[#004080]">
+              <h3 class="text-lg font-semibold mb-4 text-center text-[#002855]">Nos Services</h3>
+              <ul class="list-disc pl-4 space-y-2 text-[#002855] text-sm">
+                  <li><strong>Hébergement & gestion</strong> des infrastructures.</li>
+                  <li><strong>Développement</strong> et maintenance d'applications.</li>
+                  <li><strong>Sécurité</strong> des systèmes d'information.</li>
+                  <li><strong>Formation</strong> et assistance technique.</li>
+              </ul>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="bg-[#002855] text-white flex flex-col md:flex-row items-stretch h-[500px]">
+  <!-- Section gauche (texte) -->
+  <div class="bg-[#002855] text-white flex flex-col justify-center items-center md:w-1/2 h-full px-10 text-center">
+    <h2 class="text-4xl font-bold mb-4">Rejoignez notre communauté</h2>
+    <p class="text-lg leading-relaxed mb-6">
+        Découvrez un environnement d'apprentissage enrichissant et accessible à tous. Nos frais d'admission sont conçus pour être compétitifs, tout en offrant des services éducatifs de qualité exceptionnelle. Rejoignez-nous et commencez votre parcours vers l'excellence dès aujourd'hui !
+    </p>
+  </div>
+
+  <!-- Section droite (image) -->
+  <div class="md:w-1/2 h-full">
+    <img
+      class="w-full h-full object-cover"
+      src="../../assets/bbd2f5_8ba94a83c4da4da29f3a2386c0a1e7f3~mv2_d_5121_3414_s_4_2.avif"
+      alt="Photo d'une salle de classe"
+    >
+  </div>
+</div>
+
+<section class="bg-[#e0e7ff] py-16 px-6">
+  <div class="container mx-auto">
+    <h2 class="text-3xl font-bold mb-12 text-center text-[#002855]">Elaboré Par:</h2>
+    <div class="flex flex-wrap justify-center gap-8">
+      <div class="w-48 text-center transform transition-transform duration-300 hover:scale-105">
+        <img
+          class="w-full h-48 object-cover rounded-full border-4 border-[#002855] mb-4 shadow-lg"
+          src="../../assets/Rayen_Shili.jpg"
+          loading="lazy">
+        <p class="font-semibold text-lg text-[#002855]">Rayen Shili</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-white text-[#002855]">
+  <div class="container mx-auto flex flex-col min-h-screen">
+    <!-- Formulaire d'abonnement -->
+    <div class="flex-grow flex flex-col items-center py-16 px-4">
+      <h2 class="text-2xl font-bold mb-8">Restez informé</h2>
+      <form class="w-full max-w-md">
+        <div class="mb-6">
+          <label for="email" class="block text-sm font-medium text-[#002855] mb-2">
+            Adresse e-mail
+          </label>
+          <input
+            type="email"
+            id="email"
+            class="w-full px-4 py-3 border border-[#004080] rounded-lg shadow-sm focus:ring-2 focus:ring-[#002855] focus:border-[#002855] transition-all duration-300"
+            placeholder="Entrez votre e-mail"
+          />
+        </div>
+        <button
+          type="submit"
+          class="w-full bg-[#002855] text-white py-3 px-6 rounded-lg hover:bg-[#001f3f] transition-colors duration-300 font-medium"
+        >
+          S'abonner
+        </button>
+      </form>
+    </div>
+
+    <!-- Informations de contact -->
+    <div class="text-center text-sm mt-auto py-4 text-[#002855]">
+      <p class="mb-2">info&#64;monsite.fr</p>
+      <p>01 23 45 67 89</p>
+      <div class="flex justify-center space-x-4 mt-4">
+        <a href="#" class="text-[#002855] hover:text-[#001f3f]">
+          <i class="fab fa-facebook"></i>
+        </a>
+        <a href="#" class="text-[#002855] hover:text-[#001f3f]">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="#" class="text-[#002855] hover:text-[#001f3f]">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

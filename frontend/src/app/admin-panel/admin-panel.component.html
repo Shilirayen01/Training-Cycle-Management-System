@@ -1,0 +1,31 @@
+<div class="min-h-screen flex bg-[#fff]">
+  <!-- Sidebar -->
+  <div class="sidebar w-1/4 bg-[#001F3F] text-white">
+    <h2 class="p-6 text-xl font-bold">Admin Panel</h2>
+    <ul class="space-y-4 p-6">
+      <li><a
+        routerLink="/participants"
+        class="block py-3 px-6 text-sm font-medium hover:bg-blue-800 hover:text-white transition duration-200"
+      >
+        Participants
+      </a></li>
+      <li> <a
+        routerLink="/formateurs"
+        class="block py-3 px-6 text-sm font-medium hover:bg-blue-800 hover:text-white transition duration-200"
+      >
+        Formateurs
+      </a></li>
+      <li>  <a
+        routerLink="/cycles"
+        class="block py-3 px-6 text-sm font-medium hover:bg-blue-800 hover:text-white transition duration-200"
+      >
+        Cycles
+      </a></li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="flex-1 bg-white text-gray-800 p-8 shadow-inner">
+    <router-outlet></router-outlet>
+  </div>
+</div>

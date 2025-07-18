@@ -1,0 +1,155 @@
+<div class="min-h-screen flex bg-[#fff]">
+  <!-- Sidebar -->
+  <div class="sidebar w-1/4 bg-[#001F3F] text-white">
+    <h2 class="p-6 text-xl font-bold">Admin Panel</h2>
+    <ul class="space-y-4 p-6">
+      <li><a
+        routerLink="/participants"
+        class="block py-3 px-6 text-sm font-medium hover:bg-blue-800 hover:text-white transition duration-200"
+      >
+        Participants
+      </a></li>
+      <li> <a
+        routerLink="/formateurs"
+        class="block py-3 px-6 text-sm font-medium hover:bg-blue-800 hover:text-white transition duration-200"
+      >
+        Formateurs
+      </a></li>
+      <li>  <a
+        routerLink="/cycles"
+        class="block py-3 px-6 text-sm font-medium hover:bg-blue-800 hover:text-white transition duration-200"
+      >
+        Cycles
+      </a></li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="flex-1 p-6">
+    <!-- Header -->
+    <h1 class="text-3xl font-bold text-[#001F3F] mb-6">Gestion des Formateurs</h1>
+
+    <!-- Form Section -->
+<div class="card mb-6 p-6 bg-white rounded-lg shadow-md">
+  <!-- Bouton pour afficher/masquer le formulaire -->
+  <button class="bg-[#001F3F] text-white px-6 py-2 rounded hover:bg-[#00509E]" (click)="toggleForm()">
+    {{ selectedFormateur.id === 0 ? 'Ajouter un Formateur' : 'Modifier Formateur' }}
+  </button>
+
+  <!-- Formulaire -->
+  <div *ngIf="showForm" class="mt-6 bg-gray-50 p-6 rounded-lg shadow-inner"
+  >
+    <!-- Titre du formulaire -->
+
+    <!-- Champs du formulaire -->
+    <form class="grid grid-cols-2 gap-6" (ngSubmit)="addOrEditFormateur()">
+      <!-- Nom -->
+      <div>
+        <label class="block text-sm font-medium text-[#001F3F] mb-1">Nom</label>
+        <input
+          type="text"
+          [(ngModel)]="selectedFormateur.nom"
+          name="nom"
+          class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-[#001F3F]"
+        />
+      </div>
+
+      <!-- Prénom -->
+      <div>
+        <label class="block text-sm font-medium text-[#001F3F] mb-1">Prénom</label>
+        <input
+          type="text"
+          [(ngModel)]="selectedFormateur.prenom"
+          name="prenom"
+          class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-[#001F3F]"
+        />
+      </div>
+
+      <!-- Direction -->
+      <div>
+        <label class="block text-sm font-medium text-[#001F3F] mb-1">Direction</label>
+        <input
+          type="text"
+          [(ngModel)]="selectedFormateur.direction"
+          name="direction"
+          class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-[#001F3F]"
+        />
+      </div>
+
+      <!-- Cycle -->
+      <div>
+        <label class="block text-sm font-medium text-[#001F3F] mb-1">Cycle</label>
+        <select
+          [(ngModel)]="selectedFormateur.cycle.id"
+          name="cycle"
+          class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-[#001F3F]"
+        >
+          <option *ngFor="let cycle of cycles" [ngValue]="cycle.id">{{ cycle.theme }}</option>
+        </select>
+      </div>
+
+      <!-- Boutons -->
+      <div class="col-span-2 flex justify-end space-x-4 mt-6">
+        <button
+          class="flex-1 bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition duration-300"
+          type="button"
+          (click)="toggleForm()">
+          Annuler
+        </button>
+        <button
+          class="flex-1 bg-[#001F3F] text-white px-6 py-2 rounded-lg hover:bg-[#00509E] transition duration-300"
+          type="submit">
+          {{ selectedFormateur.id ? 'Modifier' : 'Ajouter' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+    <!-- Table Section -->
+    <div class="card">
+      <table class="min-w-full table-auto border-collapse bg-white rounded shadow">
+        <thead class="bg-[#001F3F] text-white">
+        <tr>
+          <th class="px-4 py-2">Nom</th>
+          <th class="px-4 py-2">Prénom </th>
+          <th class="px-4 py-2"> Direction</th>
+          <th class="px-4 py-2">Cycle</th>
+          <th class="px-4 py-2">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let formateur of formateurs" class="hover:bg-gray-100">
+          <td class="px-4 py-2 border">{{ formateur.nom }}</td>
+          <td class="px-4 py-2 border">{{ formateur.prenom }}</td>
+          <td class="px-4 py-2 border">{{ formateur.direction }}</td>
+          <td class="px-4 py-2 border">{{ formateur.cycle.theme || null }}</td>
+          <td class="px-4 py-2 border text-center space-x-2">
+            <button class="text-blue-500 hover:text-blue-700" (click)="viewFormateur(formateur)">
+              <i class="fas fa-eye"></i>
+            </button>
+            <button class="text-yellow-500 hover:text-yellow-700" (click)="editFormateur(formateur)">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button class="text-red-500 hover:text-red-700" (click)="deleteFormateur(formateur.id)">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Details Section -->
+    <div *ngIf="showDetails" class="card mt-6">
+      <h2 class="text-lg font-bold text-[#001F3F] mb-4">Détails du Formateur</h2>
+      <div class="grid grid-cols-2 gap-4">
+        <p><strong>Nom:</strong> {{ selectedFormateur.nom }}</p>
+        <p><strong>Prénom:</strong> {{ selectedFormateur.prenom }}</p>
+        <p><strong>Direction:</strong> {{ selectedFormateur.direction }}</p>
+        <p><strong>Cycle:</strong> {{ selectedFormateur.cycle.theme}}</p>
+      </div>
+      <button class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 mt-4" (click)="closeDetails()">Fermer</button>
+    </div>
+  </div>
+</div>

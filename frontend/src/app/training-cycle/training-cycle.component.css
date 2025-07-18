@@ -1,0 +1,16 @@
+/* training-cycle.component.css */
+input[type="text"] {
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus {
+  border-color: #3b82f6; /* Couleur bleue */
+}
+
+button {
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #2563eb; /* Couleur bleue plus foncée */
+}

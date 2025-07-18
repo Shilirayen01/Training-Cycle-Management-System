@@ -1,0 +1,19 @@
+/* app.component.css */
+.bg-primary {
+  background-color: #007bff; /* Exemple de couleur primaire */
+}
+
+.text-primary {
+  color: #007bff;
+}
+
+.section-title {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.wow {
+  visibility: hidden;
+}
+
+/* Ajoutez plus de styles ici pour personnaliser selon vos besoins */
